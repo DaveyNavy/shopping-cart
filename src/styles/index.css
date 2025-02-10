@@ -1,0 +1,14 @@
+:root {
+    box-sizing: border-box;
+    background-color: black;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+a, a:hover, a:visited, a:active {
+    color: inherit;
+    text-decoration: none;
+}

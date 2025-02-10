@@ -1,0 +1,24 @@
+.carousel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.container {
+    width: 750px;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slides {
+    position: relative;
+    width: 100%;
+    top: 0;
+    display: flex;
+    transition: left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slides > * {
+    flex: 1 0 auto;
+}

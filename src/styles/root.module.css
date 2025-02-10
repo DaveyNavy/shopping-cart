@@ -1,0 +1,25 @@
+.navBarWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.navBar {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2rem 5rem;
+    max-width: 1000px;
+}
+
+.icon {
+    max-width: 4rem;
+}
+
+.yellow {
+    background-color: goldenrod;
+    border-radius: 5px;
+    margin: 1rem;
+    padding: 0 1rem;
+}
+

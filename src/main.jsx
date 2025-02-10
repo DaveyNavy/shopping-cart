@@ -1,10 +1,39 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { createBrowserRouter, RouterProvider } from 'react-router'
+import "./styles/index.css"
+import Root from './routes/root'
+import Index, { loader as indexLoader, } from './routes/index'
+import ErrorPage from './routes/error'
+import Cart from './routes/cart'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root></Root>,
+    children: [
+      {
+        errorElement: <ErrorPage></ErrorPage>,
+        children: [
+          { 
+            index: true, 
+            element: <Index></Index>,
+            loader: indexLoader,
+          },
+          {
+            path: "cart",
+            element: <Cart></Cart>,
+          },
+        ]
+      }
+    ]
+  }
+])
+
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>,
 )

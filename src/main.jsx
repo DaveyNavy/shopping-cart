@@ -6,6 +6,7 @@ import Root from './routes/root'
 import Index, { loader as indexLoader, } from './routes/index'
 import ErrorPage from './routes/error'
 import Cart from './routes/cart'
+import MoviePage, { loader as movieLoader } from './routes/movie'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
           {
             path: "cart",
             element: <Cart></Cart>,
+          },
+          {
+            path: "movies/:movieId",
+            element: <MoviePage></MoviePage>,
+            loader: movieLoader,
           },
         ]
       }

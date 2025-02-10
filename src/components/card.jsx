@@ -1,19 +1,22 @@
 import PropTypes from "prop-types"
 import styles from "../styles/card.module.css"
+import { Link } from "react-router"
 
-export default function Card({ image, title }) {
+export default function Card({ image, title, id, width=750, height=500 }) {
     return (
         <>
-            <div className={styles.card}>
-                <div className={styles.poster}>
+            <div className={styles.card} style={{width: width + "px"}}>
+                <div className={styles.poster} style={{width: width + "px", height: height-50+"px"}}>
                     <img src={image} alt="" />
                     <div className={styles.shadow}></div>
                 </div>
 
-                <div className={styles.content}>
-                    <h1 className={styles.title}>{title}</h1>
-                    <button>Add to Cart</button>
-                </div>
+               
+                <h1 className={styles.title}>{title}</h1>
+                <span>
+                    <Link to={`/movies/${id}`}><h2>Watch</h2></Link>
+                </span>
+     
             </div>
         </>
     )
@@ -22,4 +25,7 @@ export default function Card({ image, title }) {
 Card.propTypes = {
     image: PropTypes.string,
     title: PropTypes.string,
+    id: PropTypes.number,
+    width: PropTypes.number,
+    height: PropTypes.number,
 }

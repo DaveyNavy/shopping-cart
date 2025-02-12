@@ -35,6 +35,9 @@ span {
     text-align: center;
     width: 20%;
     min-width: 75px;
+}
+
+.align {
     margin-top: auto;
 }
 

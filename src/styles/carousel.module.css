@@ -22,3 +22,10 @@
 .slides > * {
     flex: 1 0 auto;
 }
+
+.button {
+    padding: 0.5rem;
+    background-color: goldenrod;
+    border: none;
+    border-radius: 15px;
+}

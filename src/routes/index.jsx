@@ -19,7 +19,6 @@ export async function loader () {
         });
     }
     const popular = await response.json();
-    console.log(popular);
     return { popular };
 }
 
@@ -32,7 +31,7 @@ export default function Index() {
     return (
         <>
             <div className={styles.container}>
-                <Carousel images={images} titles={titles} ids={ids} autoscroll={false}></Carousel>
+                <Carousel images={images} titles={titles} ids={ids} autoscroll={true}></Carousel>
             </div>
         </>
     )

@@ -25,7 +25,7 @@ export default function Cart() {
         
         loadData();
 
-    }, [cart])
+    }, [cart]);
 
     const totalCost = useMemo(() => {
         return cost.reduce((accum, e) => accum + e, 0);

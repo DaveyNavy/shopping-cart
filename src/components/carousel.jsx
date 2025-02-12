@@ -27,7 +27,7 @@ export default function Carousel ({ images, titles, ids, autoscroll = false }) {
     return (
         <>
             <div className={styles.carousel}>
-                <button onClick={prev}> &lt; </button>
+                <button onClick={prev} className={styles.button}> &lt; </button>
                 <div className={styles.container}>
                     <div className={styles.slides} style={{left: slide * width + "px"}}>
                         {images.map((e, i) => {
@@ -35,7 +35,7 @@ export default function Carousel ({ images, titles, ids, autoscroll = false }) {
                         })}
                     </div>
                 </div>
-                <button onClick={next}> &gt; </button>
+                <button onClick={next} className={styles.button}> &gt; </button>
             </div>
         </>
     )

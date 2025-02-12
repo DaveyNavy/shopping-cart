@@ -1,7 +1,7 @@
 import { useLoaderData, useOutletContext } from "react-router";
 import Card from "../components/card"
 import styles from "../styles/movie.module.css"
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export async function loader ({ params }) {
     const options = {
@@ -65,7 +65,7 @@ export default function MoviePage() {
                         <h1 className={styles.title}>You might like: </h1>
                         <div className={styles.shows}>
                             {similar.results.slice(0,3).map((e) => <Card image={'https://image.tmdb.org/t/p/original/' + e.backdrop_path} 
-                            title={e.original_title} id={e.id} key={e.id} width={300} height={250}></Card>)}
+                            title={e.original_title} id={e.id} key={e.id} width={300} height={250} alignButton={true}></Card>)}
                         </div>
                     </div>
 

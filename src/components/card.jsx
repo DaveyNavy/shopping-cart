@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import styles from "../styles/card.module.css"
 import { Link } from "react-router"
 
-export default function Card({ image, title, id, width=750, height=500 }) {
+export default function Card({ image, title, id, width=750, height=500, alignButton = false}) {
     return (
         <>
             <div className={styles.card} style={{width: width + "px"}}>
@@ -13,7 +13,7 @@ export default function Card({ image, title, id, width=750, height=500 }) {
 
                
                 <h1 className={styles.title}>{title}</h1>
-                <span>
+                <span className={`${alignButton? styles.align : undefined}`}>
                     <Link to={`/movies/${id}`}><h2>Watch</h2></Link>
                 </span>
      
@@ -28,4 +28,5 @@ Card.propTypes = {
     id: PropTypes.number,
     width: PropTypes.number,
     height: PropTypes.number,
+    alignButton: PropTypes.bool
 }

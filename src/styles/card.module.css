@@ -1,10 +1,13 @@
 .card {
     display: flex;
     flex-direction: column;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 .poster {
     position: relative;
+    box-sizing: border-box;
 }
 
 .img {
@@ -34,7 +37,7 @@ span {
     transition: transform 0.5s ease-out;
     text-align: center;
     width: 20%;
-    min-width: 75px;
+    min-width: 100px;
 }
 
 .align {

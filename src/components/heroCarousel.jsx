@@ -1,13 +1,19 @@
 import PropTypes from "prop-types";
 import Card from "./card";
-import styles from "../styles/carousel.module.css"
-import { useState } from "react";
+import styles from "../styles/heroCarousel.module.css"
+import { useEffect, useState } from "react";
 
-export default function Carousel ({ images, titles, ids }) {
-    console.log(ids);
-    const width = 200;
+export default function HeroCarousel ({ images, titles, ids, autoscroll = false }) {
+    const width = 750;
     const n = images.length;
     const [slide, setSlide] = useState(0);
+
+    useEffect(() => {
+        let timeout = setTimeout(() => next(), 7500);
+        if (!autoscroll) clearTimeout(timeout);
+        
+        return () => clearTimeout(timeout);
+    }, [slide])
 
     function next() {
         setSlide((slide - 1) % n);
@@ -21,21 +27,21 @@ export default function Carousel ({ images, titles, ids }) {
     return (
         <>
             <div className={styles.carousel}>
-                <button onClick={prev} className={styles.button} disabled={slide == 0}> &lt; </button>
+                <button onClick={prev} className={styles.button}> &lt; </button>
                 <div className={styles.container}>
                     <div className={styles.slides} style={{left: slide * width + "px"}}>
                         {images.map((e, i) => {
-                            return <Card image={e} title={titles[i]} id={ids[i]} key={ids[i]} width={200} height={300} showButton={false} fontSize={"S"}></Card>
+                            return <Card image={e} title={titles[i]} id={ids[i]} key={ids[i]}></Card>
                         })}
                     </div>
                 </div>
-                <button onClick={next} className={styles.button} disabled={slide == -n + 4}> &gt; </button>
+                <button onClick={next} className={styles.button}> &gt; </button>
             </div>
         </>
     )
 }
 
-Carousel.propTypes = {
+HeroCarousel.propTypes = {
     images: PropTypes.arrayOf(PropTypes.string),
     titles: PropTypes.arrayOf(PropTypes.string),
     ids: PropTypes.arrayOf(PropTypes.number),

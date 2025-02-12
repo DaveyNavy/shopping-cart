@@ -8,7 +8,7 @@
     max-width: 1000px;
     display: flex;
     padding: 2rem 5rem;
-    gap: 2rem;
+    gap: 5rem;
 }
 
 
@@ -29,7 +29,7 @@
     gap: 3rem;
 }
 
-.item > img {
+.item > .poster {
     width: 25%;
 }
 
@@ -59,4 +59,10 @@ hr {
     flex: 0 0 auto;
     text-align: center;
     align-self: flex-start;
+}
+
+.icon {
+    max-width: 3rem;
+    align-self: flex-start;
+    margin-left: auto;
 }

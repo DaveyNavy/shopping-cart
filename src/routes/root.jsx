@@ -12,6 +12,11 @@ export default function Root() {
         setCart([...cart, itemId]);
     }
 
+    function removeItem(index) {
+        
+        setCart(cart.filter((e, i) => i != index));
+    }
+
     return (
         <>
             <div className={styles.navBarWrapper}>
@@ -27,7 +32,7 @@ export default function Root() {
                     </Link>
                 </div>
             </div>
-            <Outlet context={{ cart, addToCart }}></Outlet>
+            <Outlet context={{ cart, addToCart, removeItem }}></Outlet>
         </>
     )
 }

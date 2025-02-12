@@ -1,9 +1,10 @@
 import { useOutletContext } from "react-router"
 import styles from "../styles/cart.module.css"
 import { useEffect, useMemo, useState } from "react";
+import trash from "../assets/trash.svg"
 
 export default function Cart() {
-    const { cart } = useOutletContext(); 
+    const { cart, removeItem } = useOutletContext(); 
     const [info, setInfo] = useState([]);
     const [cost, setCost] = useState([]);
     
@@ -40,12 +41,13 @@ export default function Cart() {
                         {info.map((e, i) => {
                             return (
                                 <div className={styles.item} key={e.id + i}> 
-                                    <img src={`https://image.tmdb.org/t/p/original/${e.poster_path}`} alt="" />
+                                    <img src={`https://image.tmdb.org/t/p/original/${e.poster_path}`} alt="" className={styles.poster} />
                                     <div className={styles.info}>
                                         <h1>{e.original_title}</h1>
                                         <h2>X 1</h2>
-                                        <h2>$3.99</h2>
+                                        <h2>${cost[i]}</h2>
                                     </div>
+                                    <img src={trash} alt="" className={styles.icon} onClick={() => removeItem(i)}/>
                                 </div>
                             )
                         })}

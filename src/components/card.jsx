@@ -7,7 +7,7 @@ export default function Card({ image, title, id, width=750, height=500, alignBut
         <>
             <div className={styles.card} style={{width: width + "px"}}>
                 <div className={styles.poster} style={{width: width + "px", height: height-50 +"px"}}>
-                    <img src={image} alt="" />
+                    <img src={image} alt="" className={styles.img}/>
                     <div className={styles.shadow}></div>
                 </div>
 

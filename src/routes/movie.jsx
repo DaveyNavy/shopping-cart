@@ -1,6 +1,7 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useOutletContext } from "react-router";
 import Card from "../components/card"
 import styles from "../styles/movie.module.css"
+import { useContext, useEffect, useState } from "react";
 
 export async function loader ({ params }) {
     const options = {
@@ -25,6 +26,19 @@ export default function MoviePage() {
     const director = credits.cast.filter((e) => (e["known_for_department"] = "Directing"))[0]["name"];
     const actors = credits.cast.filter((e) => (e["known_for_department"] = "Acting")).slice(0,3).map((e) => e["name"]);
     const writers = credits.cast.filter((e) => (e["known_for_department"] = "Directing")).slice(0,2).map((e) => e["name"]);
+    const { addToCart } = useOutletContext();
+    const [showText, setShowText] = useState(false);
+
+    useEffect(() => {
+        let timeout;
+        if (showText) {
+            timeout = setTimeout(() => setShowText(false), 2000);
+        }
+
+        return () => clearTimeout(timeout);
+    }, [showText])
+
+    const cost = 3.99
 
     return (
         <>
@@ -44,7 +58,7 @@ export default function MoviePage() {
                             <hr />
                             <p>Stars: {actors.map((e, i) => e + (i == actors.length - 1 ? "" : ", "))}</p>
                         </div>
-                        <button className={styles.button}><h1>Buy for $3.99</h1></button>
+                        <button className={styles.button} onClick={() => {addToCart({ id: info.id, cost: cost }); setShowText(true)}} disabled={showText}><h1>Buy for ${cost}</h1></button>
                     </div>
 
                     <div className={styles.similarShows}>
@@ -54,6 +68,8 @@ export default function MoviePage() {
                             title={e.original_title} id={e.id} key={e.id} width={300} height={250}></Card>)}
                         </div>
                     </div>
+
+                    <div className={`${styles.addedToCart} ${showText? styles.opacityZero : styles.opacityNormal}`} >Added to Cart!</div>
                 </div>
             </div>
         </>

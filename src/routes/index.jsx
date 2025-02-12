@@ -1,4 +1,4 @@
-import { redirect, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 import Carousel from "../components/carousel";
 import styles from "../styles/index.module.css"
 
@@ -27,7 +27,7 @@ export default function Index() {
     const { popular } = useLoaderData();
     const images = popular.results.map((e) => 'https://image.tmdb.org/t/p/original/' + e.backdrop_path);
     const titles = popular.results.map((e) => e.original_title);
-    const ids = popular.results.map((e) => e.id)
+    const ids = popular.results.map((e) => e.id);
 
     return (
         <>

@@ -30,7 +30,6 @@
 }
 
 .button {
-    flex: 1 1 auto;
     background-color: goldenrod;
     border-radius: 5px;
     padding: 1rem;
@@ -50,4 +49,29 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+.addedToCart {
+    background-color: rgb(130, 235, 130);
+    padding: 0.5rem 1.5rem;
+    position: fixed;
+    opacity: 80%;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10%;
+    transition: none;
+    visibility: hidden;
+}
+
+.opacityZero {
+    opacity: 0;
+    transition: opacity 1.5s;
+    visibility: visible;
+}
+
+.opacityNormal {
+    opacity: 80%;
+    transition: none;
 }

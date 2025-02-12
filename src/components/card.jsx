@@ -6,7 +6,7 @@ export default function Card({ image, title, id, width=750, height=500 }) {
     return (
         <>
             <div className={styles.card} style={{width: width + "px"}}>
-                <div className={styles.poster} style={{width: width + "px", height: height-50+"px"}}>
+                <div className={styles.poster} style={{width: width + "px", height: height-50 +"px"}}>
                     <img src={image} alt="" />
                     <div className={styles.shadow}></div>
                 </div>

@@ -13,7 +13,7 @@
 }
 
 .icon {
-    max-width: 4rem;
+    max-width: 5rem;
 }
 
 .yellow {
@@ -21,5 +21,21 @@
     border-radius: 5px;
     margin: 1rem;
     padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.cart {
+    position: relative;
+}
+
+.itemCount {
+    position: absolute;
+    background-color: goldenrod;
+    padding: 5px;
+    border-radius: 25px;
+    bottom: 0;
+    right: 10px;
+    border: 1px solid goldenrod;
+}

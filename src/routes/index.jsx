@@ -17,8 +17,6 @@ export async function loader () {
 
     const genresResponse = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options);
     const genres = (await genresResponse.json()).genres;
-    console.log(genres)
-
 
     const list = genres.map((e) => fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${e.id}`, options));
     const responseByGenre = await Promise.all(list);
@@ -41,8 +39,6 @@ export default function Index() {
     function getIds(arr) {
         return arr.results.map((e) => e.id);
     }
-
-    console.log(byGenre)
 
     return (
         <>

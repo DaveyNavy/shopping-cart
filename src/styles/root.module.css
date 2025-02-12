@@ -15,8 +15,17 @@
     max-width: 1000px;
 }
 
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
 .icon {
     max-width: 5rem;
+}
+
+.smallIcon {
+    max-width: 3rem;
 }
 
 .yellow {
@@ -41,4 +50,42 @@
     bottom: 0;
     right: 10px;
     border: 1px solid goldenrod;
+}
+
+.modal, input {
+    background-color: black;
+    border-color: white;
+    color: white;
+}
+
+.modal {
+    border: 1px solid gray;
+    width: 30%;
+    min-width: 200px;
+}
+
+input {
+    width: 100%;
+}
+
+.modal img {
+    width: 60px;
+}
+
+.items {
+    padding-top: 2rem;
+}
+
+.modal .item {
+    display: flex;
+    gap: 1rem;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
 }

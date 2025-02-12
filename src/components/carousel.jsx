@@ -4,7 +4,6 @@ import styles from "../styles/carousel.module.css"
 import { useState } from "react";
 
 export default function Carousel ({ images, titles, ids }) {
-    console.log(ids);
     const width = 200;
     const n = images.length;
     const [slide, setSlide] = useState(0);

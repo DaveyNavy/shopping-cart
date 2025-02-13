@@ -1,7 +1,7 @@
 import { Outlet, Link, Form, useSubmit, useLoaderData } from "react-router"
 import styles from "../styles/root.module.css"
 import shoppingCart from "../assets/shopping-cart.svg"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import Dropdown from "../components/dropdownMenu";
 import search from "../assets/search.svg"
 
@@ -25,15 +25,19 @@ export async function loader({ request }) {
     }
     const queries = await response.json();
 
-    return { queries };
+    return { queries, q };
 }
 
 export default function Root() {
     const [cart, setCart] = useState([]);
     const [openDropdown, setOpenDropdown] = useState(false);
     const submit = useSubmit();
-    const { queries } = useLoaderData();
+    const { queries, q } = useLoaderData();
     const modalRef = useRef(null);
+
+    useEffect(() => {
+        document.getElementById("q").value = q;
+    }, [q]);
 
     function addToCart(itemId) {
         setCart([...cart, itemId]);
@@ -42,6 +46,13 @@ export default function Root() {
     function removeItem(index) {
         setCart(cart.filter((e, i) => i != index));
     }
+
+    window.addEventListener('click', (event) => {
+        console.log("here")
+        if (!['search', 'modal', 'q'].includes(event.target.id)) {
+            modalRef.current.close();
+        }
+    });
 
     return (
         <>
@@ -52,7 +63,7 @@ export default function Root() {
                     </span>
             
 
-                    <dialog ref={modalRef} className={styles.modal}>
+                    <dialog ref={modalRef} className={styles.modal} id="modal">
                         <Form id="search-form" role="search">
                             <input
                                 id="q"
@@ -60,8 +71,14 @@ export default function Root() {
                                 placeholder="Search"
                                 type="search"
                                 name="q"
-                                onChange={(e) => submit(e.currentTarget.form)}
+                                onChange={(e) => {
+                                    const isFirstSearch = q == null;
+                                    submit(e.currentTarget.form, {
+                                        replace: !isFirstSearch
+                                    })
+                                }}
                                 autoFocus
+                                defaultValue={q}
                             />
                         </Form>
 
@@ -69,7 +86,7 @@ export default function Root() {
                             return (
                                 <div className={styles.items} key={e.id}>
                                     <Link to={`/movies/${e.id}`}>
-                                        <div className={styles.item} key={e.id}>
+                                        <div className={styles.item} key={e.id} onClick={() => modalRef.current.close()}>
                                             <img src={`https://image.tmdb.org/t/p/original/${e.poster_path}`} alt="" />
                                             <div>
                                                 <h2>{e.original_title}</h2>
@@ -83,7 +100,7 @@ export default function Root() {
                     </dialog>
 
                     <div className={styles.icons}>
-                        <img className={styles.smallIcon} src={search} onClick={() => modalRef.current.open ? modalRef.current.close() : modalRef.current.show()}></img>
+                        <img className={styles.smallIcon} id="search" src={search} onClick={() => modalRef.current.open ? modalRef.current.close() : modalRef.current.show()}></img>
 
                         <Link className={styles.cart} to={"/cart"} onMouseOver={() => setOpenDropdown(true)} onMouseOut={() => setOpenDropdown(false)}>
                             <img className={styles.icon} src={shoppingCart} alt="" />

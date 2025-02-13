@@ -29,6 +29,7 @@
 }
 
 .yellow {
+    flex: 0 0 auto;
     background-color: goldenrod;
     border-radius: 5px;
     margin: 1rem;
@@ -60,8 +61,8 @@
 
 .modal {
     border: 1px solid gray;
-    width: 30%;
-    min-width: 200px;
+    width: 23%;
+    min-width: 300px;
 }
 
 input {
@@ -79,6 +80,11 @@ input {
 .modal .item {
     display: flex;
     gap: 1rem;
+}
+
+.modal::backdrop {
+    backdrop-filter: blur(1px);
+    background-color:rgba(0,0,0,0.2);
 }
 
 hr {
